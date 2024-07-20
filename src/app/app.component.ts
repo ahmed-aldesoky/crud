@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { initFlowbite } from 'flowbite';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,22 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'crud';
+
+
+  ourFirstSignals = signal<number>(0)
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
+    initFlowbite();
+
+
+    this.ourFirstSignals.set(8)
+    console.log(this.ourFirstSignals());
+    this.ourFirstSignals.update((val) => val + 2)
+    console.log(this.ourFirstSignals());
+
+
+  }
 }
