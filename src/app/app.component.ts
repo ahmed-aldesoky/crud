@@ -17,16 +17,13 @@ export class AppComponent {
   ourFirstSignals = signal<number>(0)
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
     initFlowbite();
 
 
-    this.ourFirstSignals.set(8)
-    console.log(this.ourFirstSignals());
-    this.ourFirstSignals.update((val) => val + 2)
-    console.log(this.ourFirstSignals());
+    // this.ourFirstSignals.set(8)
+    // console.log(this.ourFirstSignals());
+    // this.ourFirstSignals.update((val) => val + 2)
+    // console.log(this.ourFirstSignals());
 
 
   }

@@ -3,16 +3,16 @@ import { ContentLayoutComponent } from './layout/content-layout/content-layout.c
 
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: ContentLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'home',
-  //       loadChildren: () =>
-  //         import('@modules/home/home.module').then(m => m.HomeModule)
-  //     },
+  {
+    path: '',
+    component: ContentLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('@modules/home/home-index/home-index.component').then(mod => mod.HomeIndexComponent)
+      }
 
-  //   ]
-  // },
+    ]
+  },
+
 ];
