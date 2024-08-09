@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, effect, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -9,6 +9,26 @@ import { Component, input, output } from '@angular/core';
 })
 export class TableComponent {
   constructor() {
+    effect(() => {
+      this.rows().push(
+        {
+          id: "996e303d-16b9-4f87-518e-08dcb5efe62a",
+          name: "sadsadas",
+          englishName: "sadsadasds",
+          entityTypeName: "اختصاص خارجية",
+          countryName: "المملكة العربية السعودية",
+          isActive: true
+        },
+        {
+          id: "49aade22-81c1-4191-518f-08dcb5efe62a",
+          name: "sadsawewweew",
+          englishName: "ewewewewew",
+          entityTypeName: "اختصاص داخلية",
+          countryName: "المملكة العربية السعودية",
+          isActive: true
+        },
+      )
+    })
   }
 
 
@@ -48,10 +68,17 @@ export class TableComponent {
   pageChange = output<number>()
   isEditOpen = output<number>()
 
+
+
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
-    console.log(this.rows());
+
+
+  }
+
+  navigate(row: any) {
+    console.log(row);
 
   }
 }

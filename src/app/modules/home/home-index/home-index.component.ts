@@ -87,6 +87,10 @@ export class HomeIndexComponent {
       key: "countryName"
     },
   ]
+
+  reset() {
+    this.items = []
+  }
 }
 
 
