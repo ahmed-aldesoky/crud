@@ -1,0 +1,54 @@
+<form [formGroup]="addRecordForm">
+
+      <div class="">
+        <div class="mb-3">
+          <label for="name" class="form-label">
+            name
+          </label>
+          <input
+            class="form-control"
+            type="text"
+            aria-label="default input example"
+            formControlName="name"
+            placeholder="arabic name"
+            minlength="5"
+            maxlength="50"
+            [ngClass]="{
+              'is-invalid':
+                (f['name'].errors &&
+                  (f['name'].dirty || f['name'].touched))
+            }"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+
+              (f['name'].errors &&
+                (f['name'].dirty || f['name'].touched))
+            "
+          >
+            <div *ngIf="f['name'].errors['required']">
+              <span class="mx-1"
+                ><img src="assets\img\icons\info-circle.svg" alt="" /></span
+              >هذا الحقل مطلوب
+            </div>
+            <div *ngIf="f['name'].errors['pattern']">
+              <span class="mx-1"
+                ><img src="assets\img\icons\info-circle.svg" alt=""
+              /></span>
+              برجاء التحقق من صحة البيانات المدخلة
+            </div>
+            <div
+              *ngIf="
+                f['name'].errors['minlength'] && f['name'].value
+              "
+            >
+              <span class="mx-1"
+                ><img src="\assets\img\icons\info-circle.svg" alt=""
+              /></span>
+              يجب الا يقل العنوان عن 5 حروف
+            </div>
+          </div>
+        </div>
+      </div>
+</form>

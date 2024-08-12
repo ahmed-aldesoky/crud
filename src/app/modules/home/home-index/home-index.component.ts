@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
+import { AddComponent } from '@app/modules/home/component/add/add.component';
 import { TableComponent } from '@shared/table/table.component';
+import { DialogModule } from 'primeng/dialog';
+
 
 @Component({
   selector: 'app-home-index',
   standalone: true,
-  imports: [TableComponent],
+  imports: [TableComponent, DialogModule, AddComponent],
   templateUrl: './home-index.component.html',
   styleUrl: './home-index.component.scss'
 })
@@ -88,8 +91,17 @@ export class HomeIndexComponent {
     },
   ]
 
+  visible: boolean = true
+
   reset() {
     this.items = []
+  }
+  showAdd() {
+    this.visible = true
+  }
+  print() {
+    console.log('aaaaaaaaaaaaaaaaaaaa');
+
   }
 }
 

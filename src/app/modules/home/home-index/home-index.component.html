@@ -1,6 +1,26 @@
 
-<button class="rounded-xl bg-main text-default-white px-5 py-3" (click)="reset()" > reset</button>
+<div class="flex justify-start items-center gap-3 my-4">
+
+  <button class="rounded-xl bg-main text-default-white px-5 py-3" (click)="reset()" > reset</button>
+  <button class="rounded-xl bg-main text-default-white px-5 py-3" (click)="showAdd()" > add</button>
+</div>
 
 <app-table
 [rows]="items"
 [columns]="coulmns"></app-table>
+
+
+
+
+<p-dialog
+    header="add new record"
+    [(visible)]="visible"
+    [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false"
+    (onShow)=" print() "
+    >
+        <app-add></app-add>
+</p-dialog>
