@@ -1,6 +1,7 @@
 <form [formGroup]="addRecordForm">
 
       <div class="">
+        <!-- input name -->
         <div class="mb-3">
           <label for="name" class="form-label">
             name
@@ -18,6 +19,7 @@
                 (f['name'].errors &&
                   (f['name'].dirty || f['name'].touched))
             }"
+            required
           />
           <div
             class="invalid-feedback"
@@ -50,5 +52,128 @@
             </div>
           </div>
         </div>
+        <!-- input english name -->
+                <div class="mb-3">
+          <label for="englishName" class="form-label">
+            englishName
+          </label>
+          <input
+            class="form-control"
+            type="text"
+            aria-label="default input example"
+            formControlName="englishName"
+            placeholder="english Name"
+            minlength="5"
+            maxlength="50"
+            [ngClass]="{
+              'is-invalid':
+                (f['englishName'].errors &&
+                  (f['englishName'].dirty || f['englishName'].touched))
+            }"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+
+              (f['englishName'].errors &&
+                (f['englishName'].dirty || f['englishName'].touched))
+            "
+          >
+            <div *ngIf="f['englishName'].errors['required']">
+              <span class="mx-1"
+                ><img src="assets\img\icons\info-circle.svg" alt="" /></span
+              >هذا الحقل مطلوب
+            </div>
+            <div *ngIf="f['englishName'].errors['pattern']">
+              <span class="mx-1"
+                ><img src="assets\img\icons\info-circle.svg" alt=""
+              /></span>
+              برجاء التحقق من صحة البيانات المدخلة
+            </div>
+            <div
+              *ngIf="
+                f['englishName'].errors['minlength'] && f['englishName'].value
+              "
+            >
+              <span class="mx-1"
+                ><img src="\assets\img\icons\info-circle.svg" alt=""
+              /></span>
+              يجب الا يقل العنوان عن 5 حروف
+            </div>
+          </div>
+        </div>
+        <!-- input entity type -->
+             <div class="mb-3">
+      <label for="entityTypeName" class="form-label"> entity</label>
+      <select
+      id="entityTypeName"
+        class="form-control"
+        aria-label="Default select example"
+        formControlName="entityTypeName"
+        required
+        [ngClass]="{
+          'is-invalid':
+            (f['entityTypeName'].errors &&
+              (f['entityTypeName'].dirty || f['entityTypeName'].touched))
+        }"
+      >
+        <option value="">entity name</option>
+        @for (item of entityList; track $index) {
+        <option [value]="item.name">{{ item.name }}</option>
+        }
+      </select>
+      <div
+        class="invalid-feedback"
+        *ngIf="
+
+          (f['entityTypeName'].errors &&
+            (f['entityTypeName'].dirty || f['entityTypeName'].touched))
+        "
+      >
+        <div *ngIf="f['entityTypeName'].errors['required']">
+          <span class="mx-1"
+            ><img src="assets\img\icons\info-circle.svg" alt="" /></span
+          >هذا الحقل مطلوب
+        </div>
+      </div>
+    </div>
+        <!-- input country name -->
+             <div class="mb-3">
+      <label for="countryName" class="form-label"> country</label>
+      <select
+      id="countryName"
+        class="form-control"
+        aria-label="Default select example"
+        formControlName="countryName"
+        required
+        [ngClass]="{
+          'is-invalid':
+
+            (f['countryName'].errors &&
+              (f['countryName'].dirty || f['countryName'].touched))
+        }"
+      >
+        <option value="">country</option>
+        @for (item of countyList; track $index) {
+        <option [value]="item.name">{{ item.name }}</option>
+        }
+      </select>
+      <div
+        class="invalid-feedback"
+        *ngIf="
+
+          (f['countryName'].errors &&
+            (f['countryName'].dirty || f['countryName'].touched))
+        "
+      >
+        <div *ngIf="f['countryName'].errors['required']">
+          <span class="mx-1"
+            ><img src="assets\img\icons\info-circle.svg" alt="" /></span
+          >هذا الحقل مطلوب
+        </div>
+      </div>
+    </div>
+    <button [disabled]="!addRecordForm.valid" class="btn px-4 py-2 bg-main rounded-3xl text-white disabled:bg-gray-500 " type="button" (click)="submit()" > submit</button>
       </div>
 </form>
