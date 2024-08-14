@@ -11,16 +11,20 @@
 
 
 
+@if (visible) {
 
-<p-dialog
-    header="add new record"
-    [(visible)]="visible"
-    [modal]="true"
-    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
-    [style]="{ width: '50vw' }"
-    [draggable]="false"
-    [resizable]="false"
-    (onShow)=" print() "
-    >
-        <app-add></app-add>
+  <p-dialog
+  header="add new record"
+  [(visible)]="visible"
+  [modal]="true"
+  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  (onShow)=" print() "
+  (onHide)="visible=false"
+  >
+  <app-add
+  (sendData)="items.push($event);visible=false"></app-add>
 </p-dialog>
+}

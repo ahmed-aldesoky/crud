@@ -1,8 +1,9 @@
 import { MatrialModule } from './../../../../shared/matrial/matrial.module';
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@shared/matrial/matrial.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CountryData, EntityData } from '@app/shared/data/lookupsData';
 
 @Component({
   selector: 'app-add',
@@ -13,7 +14,13 @@ import { CommonModule } from '@angular/common';
 })
 export class AddComponent {
 
+  sendData = output<{}>()
+
   addRecordForm!: FormGroup;
+  entityTypeList: string[] = []
+  countyList: any[] = CountryData
+  entityList: any[] = EntityData
+
 
   constructor(
     private fb: FormBuilder,
@@ -40,11 +47,22 @@ export class AddComponent {
     return this.addRecordForm.controls;
   }
 
-  static newGuid() {
+  newGuid() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = Math.random() * 16 | 0,
         v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
+  }
+  submit() {
+    const data = {
+      id: this.newGuid(),
+      name: this.f['name'].value,
+      englishName: this.f['englishName'].value,
+      entityTypeName: this.f['entityTypeName'].value,
+      countryName: this.f['countryName'].value,
+      isActive: this.f['isActive'].value,
+    }
+    this.sendData.emit(data)
   }
 }
