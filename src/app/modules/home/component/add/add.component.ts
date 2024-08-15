@@ -1,10 +1,18 @@
 import { MatrialModule } from './../../../../shared/matrial/matrial.module';
-import { Component, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@shared/matrial/matrial.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CountryData, EntityData } from '@app/shared/data/lookupsData';
+interface item {
+  id: string,
+  name: string,
+  englishName: string,
+  entityTypeName: string,
+  countryName: string,
+  isActive: boolean
 
+}
 @Component({
   selector: 'app-add',
   standalone: true,
@@ -12,9 +20,12 @@ import { CountryData, EntityData } from '@app/shared/data/lookupsData';
   templateUrl: './add.component.html',
   styleUrl: './add.component.scss'
 })
+
+
 export class AddComponent {
 
-  sendData = output<{}>()
+  currentValue = input<item>()
+  sendData = output<item>()
 
   addRecordForm!: FormGroup;
   entityTypeList: string[] = []
@@ -30,6 +41,7 @@ export class AddComponent {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.createForm()
+
   }
 
 
@@ -64,5 +76,17 @@ export class AddComponent {
       isActive: this.f['isActive'].value,
     }
     this.sendData.emit(data)
+  }
+
+  fetchEditData(data: item) {
+    this.addRecordForm.patchValue({
+      id: data.id,
+      name: data.name,
+      englishName: data.englishName,
+      entityTypeName: data.entityTypeName,
+      countryName: data.countryName,
+      isActive: data.isActive
+
+    })
   }
 }

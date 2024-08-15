@@ -66,7 +66,7 @@ export class TableComponent {
   colName = input<string>('')
   downloadIcon = input<boolean>(false)
   pageChange = output<number>()
-  isEditOpen = output<number>()
+  isEditOpen = output<{} | boolean>()
 
 
 
@@ -80,5 +80,8 @@ export class TableComponent {
   navigate(row: any) {
     console.log(row);
 
+  }
+  editRow(row: any) {
+    this.isEditOpen.emit(row)
   }
 }

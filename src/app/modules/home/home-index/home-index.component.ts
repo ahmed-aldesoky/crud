@@ -91,7 +91,7 @@ export class HomeIndexComponent {
     },
   ]
 
-  visible: boolean = true
+  visible: boolean = false
 
   reset() {
     this.items = []
@@ -99,8 +99,9 @@ export class HomeIndexComponent {
   showAdd() {
     this.visible = true
   }
-  print() {
-    console.log('aaaaaaaaaaaaaaaaaaaa');
+  print(event?: {}) {
+    console.log(event);
+
 
   }
 }
